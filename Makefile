@@ -1,2 +1,2 @@
 build:
-	xargo build
+	xargo build --release
