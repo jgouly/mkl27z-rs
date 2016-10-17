@@ -1,5 +1,7 @@
 #![no_std]
 
+pub mod flashconfig;
+
 #[macro_use]
 mod memory_mapped_register;
 
