@@ -12,3 +12,24 @@ pub fn gate_gpio() {
   sim_scgc5.write(SIM_SCGC5_PORTA | SIM_SCGC5_PORTB | SIM_SCGC5_PORTC |
                   SIM_SCGC5_PORTD | SIM_SCGC5_PORTE);
 }
+
+pub struct OutputPin {
+  pub port: MMReg<u32>,
+  pub pddr: MMReg<u32>,
+  pub psor: MMReg<u32>,
+  pub pcor: MMReg<u32>,
+  pub num: u32,
+}
+
+impl OutputPin {
+  pub fn init(&self) {
+    self.port.write(self.port.read() | (1 << 8));
+    self.pddr.write(self.pddr.read() | (1 << self.num));
+  }
+  pub fn high(&self) {
+    self.psor.write(self.psor.read() | (1 << self.num));
+  }
+  pub fn low(&self) {
+    self.pcor.write(self.pcor.read() | (1 << self.num));
+  }
+}
