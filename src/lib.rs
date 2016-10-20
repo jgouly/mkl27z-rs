@@ -1,6 +1,7 @@
 #![no_std]
 
 pub mod flashconfig;
+pub mod vector_table;
 
 #[macro_use]
 mod memory_mapped_register;
