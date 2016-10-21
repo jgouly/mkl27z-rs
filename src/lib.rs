@@ -16,3 +16,12 @@ pub fn init() {
   sim::disable_watchdog();
   gpio::gate_gpio();
 }
+
+#[macro_export]
+macro_rules! reset_fn {
+  ($v: ident) => {
+    #[link_section = ".reset"]
+    #[no_mangle]
+    pub static _RESET: fn() -> ! = $v;
+  }
+}
