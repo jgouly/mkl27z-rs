@@ -40,3 +40,4 @@ mmaddr!(GPIOB_PSOR, u32, 0x400FF044);
 mmaddr!(GPIOB_PCOR, u32, 0x400FF048);
 
 mmaddr!(PORTB_PCR18, u32, 0x4004A048);
+mmaddr!(PORTB_PCR19, u32, 0x4004A04C);
