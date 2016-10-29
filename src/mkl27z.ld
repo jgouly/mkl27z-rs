@@ -25,15 +25,19 @@ SECTIONS
 
   .data : AT (_etext) {
     . = ALIGN(4);
+    _sdata = .;
     *(.data*)
     . = ALIGN(4);
+    _edata = .;
   } > RAM
 
   .bss : {
     . = ALIGN(4);
+    _sbss = .;
     *(.bss*)
     *(COMMON)
     . = ALIGN(4);
+    _ebss = .;
   } > RAM
 
   /DISCARD/ :

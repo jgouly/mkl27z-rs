@@ -14,7 +14,32 @@ pub mod gpio;
 
 pub fn init() {
   sim::disable_watchdog();
+  copy_rom_to_ram();
   gpio::gate_gpio();
+}
+
+fn copy_rom_to_ram() {
+  unsafe {
+    extern "C" {
+      static _etext: u32;
+      static mut _sdata: u32;
+      static mut _edata: u32;
+      static mut _sbss: u32;
+      static mut _ebss: u32;
+    }
+    let mut src: *const u32 = &_etext;
+    let mut dest: *mut u32 = &mut _sdata;
+    while dest < &mut _edata as *mut u32 {
+      *dest = *src;
+      dest = dest.offset(1);
+      src = src.offset(1);
+    }
+    let mut dest: *mut u32 = &mut _ebss;
+    while dest >= &mut _sbss as *mut u32 {
+      *dest = 0;
+      dest = dest.offset(-1);
+    }
+  }
 }
 
 #[macro_export]
