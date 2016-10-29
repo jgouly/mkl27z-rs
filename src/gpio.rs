@@ -13,6 +13,10 @@ pub fn gate_gpio() {
                   SIM_SCGC5_PORTD | SIM_SCGC5_PORTE);
 }
 
+const PORT_PCR_MUX1: u32 = 1 << 8;
+const PORT_PCR_PS: u32 = 0x1;
+const PORT_PCR_PE: u32 = 0x2;
+
 pub struct OutputPin {
   pub port: MMReg<u32>,
   pub pddr: MMReg<u32>,
@@ -23,7 +27,7 @@ pub struct OutputPin {
 
 impl OutputPin {
   pub fn init(&self) {
-    self.port.write(self.port.read() | (1 << 8));
+    self.port.write(self.port.read() | PORT_PCR_MUX1);
     self.pddr.write(self.pddr.read() | (1 << self.num));
   }
   pub fn high(&self) {
@@ -31,6 +35,28 @@ impl OutputPin {
   }
   pub fn low(&self) {
     self.pcor.write(self.pcor.read() | (1 << self.num));
+  }
+}
+
+pub struct InputPin {
+  pub port: MMReg<u32>,
+  pub pddr: MMReg<u32>,
+  pub pdir: MMReg<u32>,
+  pub num: u32,
+}
+
+impl InputPin {
+  pub fn init(&self) {
+    self.port.write(self.port.read() | PORT_PCR_MUX1 | PORT_PCR_PE);
+    self.port.write(self.port.read() & !PORT_PCR_PS);
+    self.pddr.write(self.pddr.read() & !(1 << self.num));
+  }
+  pub fn read(&self) -> u32 {
+    if (self.pdir.read() & (1 << self.num)) != 0 {
+      1
+    } else {
+      0
+    }
   }
 }
 
