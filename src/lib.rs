@@ -12,10 +12,13 @@ mod memory_mapped_register;
 mod sim;
 pub mod gpio;
 
+mod usb;
+
 pub fn init() {
   sim::disable_watchdog();
   copy_rom_to_ram();
   gpio::gate_gpio();
+  usb::init();
 }
 
 fn copy_rom_to_ram() {

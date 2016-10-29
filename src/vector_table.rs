@@ -1,3 +1,5 @@
+use usb;
+
 fn default_handler() {
   loop {}
 }
@@ -45,7 +47,7 @@ pub static _EXCEPTIONS: VectorTable = [Some(default_handler),
                                        Some(default_handler),
                                        Some(default_handler),
                                        Some(default_handler),
-                                       Some(default_handler),
+                                       Some(usb::usb_isr_handler),
                                        Some(default_handler),
                                        Some(default_handler),
                                        Some(default_handler),
