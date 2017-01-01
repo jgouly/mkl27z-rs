@@ -89,7 +89,7 @@ unsigned divu9(unsigned n) {
 
 unsigned int div_by_72(int n)
 {
-  return divu9(n >> 4);
+  return divu9(n >> 3);
 }
 
 void usb_free(usb_packet_t *p)
