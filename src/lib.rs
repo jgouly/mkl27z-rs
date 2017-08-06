@@ -17,6 +17,7 @@ mod usb;
 extern "C" {
   fn init_clocks();
   fn init_systick();
+  fn msdelay(ms: u32);
 }
 
 pub fn init() {
@@ -25,6 +26,8 @@ pub fn init() {
   gpio::gate_gpio();
   unsafe { init_clocks() }
   unsafe { init_systick() }
+  // TODO: Add a condition to wait on, rather than hardcoded delay.
+  unsafe { msdelay(1) }
   usb::init();
 }
 
