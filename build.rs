@@ -23,7 +23,7 @@ fn build_third_party() {
     .join("src");
   let third_party_dir = src.join("third_party");
   let files =
-    vec!["usb_dev.c", "usb_desc.c", "usb_mem.c", "usb_keyboard.c", "clz.c"];
+    vec!["clz.c", "systick.c", "usb_dev.c", "usb_desc.c", "usb_mem.c", "usb_keyboard.c"];
   let flags = vec!["-mcpu=cortex-m0plus",
                    "-mthumb",
                    "-fno-PIC",

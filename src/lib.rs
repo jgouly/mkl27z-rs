@@ -14,10 +14,17 @@ pub mod gpio;
 
 mod usb;
 
+extern "C" {
+  fn init_clocks();
+  fn init_systick();
+}
+
 pub fn init() {
   sim::disable_watchdog();
   copy_rom_to_ram();
   gpio::gate_gpio();
+  unsafe { init_clocks() }
+  unsafe { init_systick() }
   usb::init();
 }
 
