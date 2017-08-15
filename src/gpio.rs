@@ -66,6 +66,9 @@ mmaddr!(GPIOA_PDDR, u32, 0x400FF014);
 mmaddr!(GPIOA_PSOR, u32, 0x400FF004);
 mmaddr!(GPIOA_PCOR, u32, 0x400FF008);
 
+mmaddr!(PORTA_PCR1, u32, 0x40049004);
+mmaddr!(PORTA_PCR2, u32, 0x40049008);
+mmaddr!(PORTA_PCR18, u32, 0x40049048);
 mmaddr!(PORTA_PCR19, u32, 0x4004904C);
 
 // GPIO - Port B
@@ -93,6 +96,9 @@ mmaddr!(PORTC_PCR0, u32, 0x4004B000);
 mmaddr!(PORTC_PCR1, u32, 0x4004B004);
 mmaddr!(PORTC_PCR2, u32, 0x4004B008);
 mmaddr!(PORTC_PCR4, u32, 0x4004B010);
+mmaddr!(PORTC_PCR5, u32, 0x4004B014);
+mmaddr!(PORTC_PCR6, u32, 0x4004B018);
+mmaddr!(PORTC_PCR7, u32, 0x4004B01C);
 mmaddr!(PORTC_PCR9, u32, 0x4004B024);
 
 // GPIO - Port D
@@ -101,6 +107,10 @@ mmaddr!(GPIOD_PSOR, u32, 0x400FF0C4);
 mmaddr!(GPIOD_PCOR, u32, 0x400FF0C8);
 
 mmaddr!(PORTD_PCR0, u32, 0x4004C000);
+mmaddr!(PORTD_PCR1, u32, 0x4004C004);
+mmaddr!(PORTD_PCR2, u32, 0x4004C008);
+mmaddr!(PORTD_PCR3, u32, 0x4004C00C);
+mmaddr!(PORTD_PCR4, u32, 0x4004C010);
 mmaddr!(PORTD_PCR5, u32, 0x4004C014);
 mmaddr!(PORTD_PCR6, u32, 0x4004C018);
 mmaddr!(PORTD_PCR7, u32, 0x4004C01C);
