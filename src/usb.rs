@@ -11,13 +11,19 @@ mod imp {
     }
   }
 
-  pub fn usb_isr_handler() { unsafe { usb_isr(); } }
+  pub fn usb_isr_handler() {
+    unsafe {
+      usb_isr();
+    }
+  }
 }
 
 #[cfg(not(feature = "usb"))]
 mod imp {
   pub fn init() {}
-  pub fn usb_isr_handler() { loop {} }
+  pub fn usb_isr_handler() {
+    loop {}
+  }
 }
 
 pub use self::imp::*;

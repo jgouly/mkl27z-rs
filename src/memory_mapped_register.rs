@@ -1,7 +1,9 @@
 use core::ptr::{read_volatile, write_volatile};
 
 macro_rules! mmaddr {
-  ($v: ident, $ty: ty, $x: expr) => { pub const $v: *mut $ty = ($x) as *mut $ty; };
+  ($v: ident, $ty: ty, $x: expr) => {
+    pub const $v: *mut $ty = ($x) as *mut $ty;
+  };
 }
 
 pub struct MemoryMappedRegister<T> {
