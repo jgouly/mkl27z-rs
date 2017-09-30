@@ -13,9 +13,14 @@ pub fn gate_gpio() {
                   SIM_SCGC5_PORTD | SIM_SCGC5_PORTE);
 }
 
-const PORT_PCR_MUX1: u32 = 1 << 8;
-const PORT_PCR_PS: u32 = 0x1;
-const PORT_PCR_PE: u32 = 0x2;
+pub const PORT_PCR_MUX1: u32 = 1 << 8;
+pub const PORT_PCR_PS: u32 = 0x01;
+pub const PORT_PCR_PE: u32 = 0x02;
+pub const PORT_PCR_PFE: u32 = 0x10;
+
+pub fn port_pcr_mux(n: u32) -> u32 {
+  (n & 7) << 8
+}
 
 pub struct OutputPin {
   pub port: MMReg<u32>,
