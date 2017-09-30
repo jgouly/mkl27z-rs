@@ -10,12 +10,12 @@ pub mod vector_table;
 mod memory_mapped_register;
 
 mod sim;
+mod mcg;
 pub mod gpio;
 
 mod usb;
 
 extern "C" {
-  fn init_clocks();
   fn init_systick();
   fn msdelay(ms: u32);
 }
@@ -24,7 +24,7 @@ pub fn init() {
   sim::disable_watchdog();
   copy_rom_to_ram();
   gpio::gate_gpio();
-  unsafe { init_clocks() }
+  mcg::init_clocks();
   unsafe { init_systick() }
   // TODO: Add a condition to wait on, rather than hardcoded delay.
   unsafe { msdelay(1) }

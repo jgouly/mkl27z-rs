@@ -1,22 +1,6 @@
 #include "usb_desc.h"
 #include "kinetis.h"
 
-#define MCG_MC (*(volatile uint8_t *)0x40064018)
-#define MCG_MC_HIRCEN (1 << 7)
-#define MCG_C1_CLKS_HIRC (3 << 6)
-#define MCG_S (*(volatile uint8_t *)0x40064006)
-#define MCG_S_CLKST (3 << 2)
-#define MCG_C1 (*(volatile uint8_t *)0x40064000)
-#define IRCLKEN (1 << 1)
-
-void init_clocks() {
-  MCG_MC |= MCG_MC_HIRCEN;
-  MCG_C1 &= ~MCG_C1_CLKS_HIRC;
-  while ((MCG_S & MCG_S_CLKST) != 0)
-    ;
-  MCG_C1 |= IRCLKEN;
-}
-
 volatile uint32_t systick_millis_count = 0;
 void systick_isr(void) { systick_millis_count++; }
 
